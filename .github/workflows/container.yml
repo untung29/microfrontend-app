@@ -1,0 +1,36 @@
+name: deploy-container
+
+# What events are we watching for?
+on:
+  push:
+    # What branch that will trigger the process of workflow?
+    branches:
+      - master
+    paths:
+      - "packages/container/**"
+
+# If an event is triggered, then which directory we want the command is working on?
+defaults:
+  run:
+    working-directory: packages/container
+
+# What is the command that we want to execute inside of the dir?
+jobs:
+  build:
+    # Set the virtual machine
+    runs-on: ubuntu-latest
+
+    # Command that we want to execute based on the virtual machine environment
+    steps:
+      # Take all of the codes and execute it in the virtual machine
+      - uses: actions/checkout@v2
+
+      # commands
+      - run: npm install
+      - run: npm run build
+
+      - uses: chrislennon/action-aws-cli@v1.1
+      - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
