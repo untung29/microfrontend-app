@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     # Command that we want to execute based on the virtual machine environment
-    steps:
+    workflow_dispatch:
       # Take all of the codes and execute it in the virtual machine
       - uses: actions/checkout@v2
 
