@@ -6,6 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link as RouterLink } from 'react-router-dom';
 
+function hello() {
+  console.log("untung")
+}
 const useStyles = makeStyles((theme) => ({
   '@global': {
     ul: {
