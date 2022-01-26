@@ -9,7 +9,7 @@ const MarketingLazy = lazy(() => import("./components/MarketingApp"));
 const AuthLazy = lazy(() => import("./components/AuthApp"));
 
 import { StylesProvider, createGenerateClassName } from "@material-ui/core/styles";
-
+//
 const generateClassName = createGenerateClassName({
   productionPrefix: "co",
 });
